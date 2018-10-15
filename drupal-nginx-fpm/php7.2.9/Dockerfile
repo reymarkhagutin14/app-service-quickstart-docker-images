@@ -1,4 +1,4 @@
-FROM reymarkhagutin14/nginx-fpm:php7.2.9-local-storage
+FROM reymarkhagutin14/app-service-quickstart-docker-images/nginx-fpm:php7.2.9-local-storage
 MAINTAINER Azure App Service Container Images <appsvc-images@microsoft.com>
 # ========
 # ENV vars
