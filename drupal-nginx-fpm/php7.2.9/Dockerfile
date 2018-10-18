@@ -8,8 +8,8 @@ ENV DOCKER_BUILD_HOME "/dockerbuild"
 # drupal 
 ENV DRUPAL_HOME "/home/site/wwwroot/beis-app/web"
 # ENV DRUPAL_PRJ "/home/drupal_prj"
-ENV DRUPAL_PRJ "/home/site/wwwroot/beis-app/web"
 #ENV DRUPAL_PRJ "/home/site/wwwroot/beis-app/web"
+
 # mariadb
 ENV MARIADB_DATA_DIR "/home/data/mysql"
 ENV MARIADB_LOG_DIR "/home/LogFiles/mysql"
