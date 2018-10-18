@@ -49,45 +49,45 @@ setup_phpmyadmin(){
 }
 
 #Get drupal from Git
-setup_drupal(){	
-	cd $DRUPAL_PRJ
-	GIT_REPO=${GIT_REPO:-https://github.com/azureappserviceoss/drupalcms-azure}
-	GIT_BRANCH=${GIT_BRANCH:-linuxappservice-composer}
-	echo "INFO: ++++++++++++++++++++++++++++++++++++++++++++++++++:"
-	echo "REPO: "$GIT_REPO
-	echo "BRANCH: "$GIT_BRANCH
-	echo "INFO: ++++++++++++++++++++++++++++++++++++++++++++++++++:"
+#setup_drupal(){	
+#	cd $DRUPAL_PRJ
+#	GIT_REPO=${GIT_REPO:-https://github.com/azureappserviceoss/drupalcms-azure}
+#	GIT_BRANCH=${GIT_BRANCH:-linuxappservice-composer}
+#	echo "INFO: ++++++++++++++++++++++++++++++++++++++++++++++++++:"
+#	echo "REPO: "$GIT_REPO
+#	echo "BRANCH: "$GIT_BRANCH
+#	echo "INFO: ++++++++++++++++++++++++++++++++++++++++++++++++++:"
+ #   
+#	echo "INFO: Clone from "$GIT_REPO
+#   git clone $GIT_REPO $DRUPAL_PRJ	
+#	if [ "$GIT_BRANCH" != "master" ];then
+#		echo "INFO: Checkout to "$GIT_BRANCH
+#		git fetch origin
+#	    git branch --track $GIT_BRANCH origin/$GIT_BRANCH && git checkout $GIT_BRANCH
+#	fi	
+#	
+ #   chmod a+w "$DRUPAL_PRJ/web/sites/default" 
+  #  mkdir -p "$DRUPAL_PRJ/web/sites/default/files"
+#    chmod a+w "$DRUPAL_PRJ/web/sites/default/files"
+#	if test ! -e "$DRUPAL_PRJ/web/sites/default/settings.php"; then 
+#        #Test this time, after git pull, myabe drupal has already installed in repo.
+#        cp "$DRUPAL_PRJ/web/sites/default/default.settings.php" "$DRUPAL_PRJ/web/sites/default/settings.php"
+#        chmod a+w "$DRUPAL_PRJ/web/sites/default/settings.php"
+#        mv /usr/src/settings.redis.php "$DRUPAL_PRJ/web/sites/default/settings.redis.php"
+#	fi
     
-	echo "INFO: Clone from "$GIT_REPO
-    git clone $GIT_REPO $DRUPAL_PRJ	
-	if [ "$GIT_BRANCH" != "master" ];then
-		echo "INFO: Checkout to "$GIT_BRANCH
-		git fetch origin
-	    git branch --track $GIT_BRANCH origin/$GIT_BRANCH && git checkout $GIT_BRANCH
-	fi	
-	
-    chmod a+w "$DRUPAL_PRJ/web/sites/default" 
-    mkdir -p "$DRUPAL_PRJ/web/sites/default/files"
-    chmod a+w "$DRUPAL_PRJ/web/sites/default/files"
-	if test ! -e "$DRUPAL_PRJ/web/sites/default/settings.php"; then 
-        #Test this time, after git pull, myabe drupal has already installed in repo.
-        cp "$DRUPAL_PRJ/web/sites/default/default.settings.php" "$DRUPAL_PRJ/web/sites/default/settings.php"
-        chmod a+w "$DRUPAL_PRJ/web/sites/default/settings.php"
-        mv /usr/src/settings.redis.php "$DRUPAL_PRJ/web/sites/default/settings.redis.php"
-	fi
-    
-    test -d "$DRUPAL_HOME" && mv $DRUPAL_HOME /home/bak/wwwroot_bak$(date +%s)
-    ln -s $DRUPAL_PRJ/web/  $DRUPAL_HOME
+#    test -d "$DRUPAL_HOME" && mv $DRUPAL_HOME /home/bak/wwwroot_bak$(date +%s)
+#    ln -s $DRUPAL_PRJ/web/  $DRUPAL_HOME
 
-    echo "INFO: Composer require drupal/redis..."
-    cd $DRUPAL_PRJ && composer require drupal/redis    	
-}
+#    echo "INFO: Composer require drupal/redis..."
+#    cd $DRUPAL_PRJ && composer require drupal/redis    	
+#}
 
-test ! -d "$DRUPAL_HOME" && echo "INFO: $DRUPAL_HOME not found. creating..." && mkdir -p "$DRUPAL_HOME"
-if [ ! $WEBSITES_ENABLE_APP_SERVICE_STORAGE ]; then 
-    echo "INFO: NOT in Azure, chown for "$DRUPAL_HOME 
-    chown -R www-data:www-data $DRUPAL_HOME
-fi
+#test ! -d "$DRUPAL_HOME" && echo "INFO: $DRUPAL_HOME not found. creating..." && mkdir -p "$DRUPAL_HOME"
+#if [ ! $WEBSITES_ENABLE_APP_SERVICE_STORAGE ]; then 
+#    echo "INFO: NOT in Azure, chown for "$DRUPAL_HOME 
+#    chown -R www-data:www-data $DRUPAL_HOME
+#fi
 
 echo "Setup openrc ..." && openrc && touch /run/openrc/softlevel
 
@@ -118,23 +118,23 @@ if [ "${DATABASE_TYPE}" == "local" ]; then
 fi
 
 # setup Drupal
-mkdir -p /home/bak
-if test ! -e "$DRUPAL_HOME/sites/default/settings.php"; then 
+#mkdir -p /home/bak
+#if test ! -e "$DRUPAL_HOME/sites/default/settings.php"; then 
 #Test this time, if WEBSITES_ENABLE_APP_SERVICE_STORAGE = true and drupal has already installed.
-    echo "Installing Drupal ..."
-    while test -d "$DRUPAL_PRJ"  
-    do
-        echo "INFO: $DRUPAL_PRJ is exist, clean it ..."        
-        mv $DRUPAL_PRJ /home/bak/drupal_prj_bak$(date +%s)
-    done
-    test ! -d "$DRUPAL_PRJ" && echo "INFO: $DRUPAL_PRJ not found. creating..." && mkdir -p "$DRUPAL_PRJ"    
-    setup_drupal
+#    echo "Installing Drupal ..."
+#    while test -d "$DRUPAL_PRJ"  
+#    do
+#        echo "INFO: $DRUPAL_PRJ is exist, clean it ..."        
+#        mv $DRUPAL_PRJ /home/bak/drupal_prj_bak$(date +%s)
+#    done
+#    test ! -d "$DRUPAL_PRJ" && echo "INFO: $DRUPAL_PRJ not found. creating..." && mkdir -p "$DRUPAL_PRJ"    
+#    setup_drupal
 
-    if [ ! $WEBSITES_ENABLE_APP_SERVICE_STORAGE ]; then
-        echo "INFO: NOT in Azure, chown for "$DRUPAL_PRJ  
-        chown -R www-data:www-data $DRUPAL_PRJ 
-    fi
-fi
+#    if [ ! $WEBSITES_ENABLE_APP_SERVICE_STORAGE ]; then
+#        echo "INFO: NOT in Azure, chown for "$DRUPAL_PRJ  
+#        chown -R www-data:www-data $DRUPAL_PRJ 
+#    fi
+#fi
 
 # Set php-fpm listen type
 # By default, It's socket.
