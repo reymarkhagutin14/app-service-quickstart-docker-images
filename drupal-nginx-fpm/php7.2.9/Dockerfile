@@ -6,7 +6,7 @@ MAINTAINER Azure App Service Container Images <appsvc-images@microsoft.com>
 #
 ENV DOCKER_BUILD_HOME "/dockerbuild"
 # drupal 
-ENV DRUPAL_HOME "/home/site/wwwroot/beis-app/web"
+ENV DRUPAL_HOME "/home/site/wwwroot"
 ENV DRUPAL_PRJ "/home/drupal_prj"
 #ENV DRUPAL_PRJ "/home/site/wwwroot/beis-app/web"
 
