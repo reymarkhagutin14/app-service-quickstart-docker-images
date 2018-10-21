@@ -46,7 +46,6 @@ RUN set -ex \
 # ----------
 # 1. composer
 # ----------
-RUN set -ex \
 	&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
 && composer self-update \
 # ------
