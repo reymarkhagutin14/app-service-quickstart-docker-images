@@ -49,16 +49,6 @@ RUN set -ex \
 RUN set -ex \
 	&& curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
 && composer self-update \
-# ----------
-# 2. drush
-# ----------
-    && rm -rf /home/.composer && export COMPOSER_HOME='/root/.composer/' \
-    && composer global require consolidation/cgr \
-	&& composer_home=$(find / -name .composer) \
-    && ln -s $composer_home/vendor/bin/cgr /usr/local/bin/cgr \
-	&& cgr drush/drush \
-    && ln -s $composer_home/vendor/bin/drush /usr/local/bin/drush \
-&& cgr predis/predis \ 
 # ------
 # ssh
 # ------
